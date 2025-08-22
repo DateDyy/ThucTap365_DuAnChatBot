@@ -7,8 +7,13 @@ def clean_text(text):
     text = re.sub(r'\n{3,}', '\n\n', text)
     # Xóa khoảng trắng đầu cuối mỗi dòng
     text = "\n".join(line.strip() for line in text.splitlines())
-    # Xóa các ký tự không mong muốn "Ph/uni1EA7n"
-    text = re.sub(r"Ph/uni1EA7n\s*\d+:?", "", text)
+    # Xóa số trang (dòng chỉ chứa số hoặc số cuối dòng)
+    text = re.sub(r'^\s*\d+\s*$', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\n\d+\s*$', '', text)
+    # Chuẩn hóa bullet: thay các ký tự bullet phổ biến thành "-"
+    text = re.sub(r'^[•●▪▶\-–—]+', '- ', text, flags=re.MULTILINE)
+    # Xóa các bullet lặp lại đầu dòng
+    text = re.sub(r'^(\- ){2,}', '- ', text, flags=re.MULTILINE)
     # Xóa khoảng trắng thừa, xuống dòng lặp
     text = re.sub(r"\n+", "\n", text)
     return text.strip()
