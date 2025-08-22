@@ -1,4 +1,4 @@
-from PyPDF2 import PdfReader #Kiện
+from PyPDF2 import PdfReader #Kha
 import json
 import os
 
