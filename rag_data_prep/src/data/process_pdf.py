@@ -1,4 +1,4 @@
-from PyPDF2 import PdfReader #Kha ghi chú
+from PyPDF2 import PdfReader #Khã Hân
 import json
 import os
 
