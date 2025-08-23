@@ -9,6 +9,7 @@ vector/
 ├── faiss.index           # Chỉ mục FAISS chứa vector embedding của các đoạn văn bản
 ├── metadata.json         # Thông tin metadata (file, số trang) ứng với từng vector
 ├── requirements.txt      # Danh sách thư viện cần thiết để chạy các script trong vector
+├── README_vector.md      # Giải thích và chú thích chính cho thư mục vector
 └── src/
     └── data/
         └── build_vector_store.py  # Script xử lý chunking, embedding và tạo FAISS index
