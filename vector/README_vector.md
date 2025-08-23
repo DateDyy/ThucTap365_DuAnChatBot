@@ -6,13 +6,14 @@ Thư mục `vector` dùng để lưu trữ các file dữ liệu nhúng (embeddi
 
 ```
 vector/
-├── faiss.index           # Chỉ mục FAISS chứa vector embedding của các đoạn văn bản
-├── metadata.json         # Thông tin metadata (file, số trang) ứng với từng vector
-├── requirements.txt      # Danh sách thư viện cần thiết để chạy các script trong vector
-├── README_vector.md      # Giải thích và chú thích chính cho thư mục vector
+├── faiss.index               # Chỉ mục FAISS chứa vector embedding của các đoạn văn bản
+├── metadata.json             # Thông tin metadata (file, số trang) ứng với từng vector
+├── requirements.txt          # Danh sách thư viện cần thiết để chạy các script trong vector
+├── README_vector.md          # Tài liệu hướng dẫn thư mục vector
 └── src/
     └── data/
-        └── build_vector_store.py  # Script xử lý chunking, embedding và tạo FAISS index
+        ├── build_vector_store.py      # Script xử lý chunking, embedding và tạo FAISS index
+        └── check_vector_entry.py      # Script kiểm tra số lượng vector và metadata có khớp nhau không
 ```
 
 ## Chức năng các file
@@ -36,6 +37,9 @@ vector/
   3. Sinh embedding cho từng đoạn bằng mô hình `all-MiniLM-L6-v2`.
   4. Tạo chỉ mục FAISS và lưu metadata.
 
+- **src/data/check_vector_entry.py**  
+  Script kiểm tra số lượng vector trong `faiss.index` có khớp với số lượng entry trong `metadata.json` hay không, giúp đảm bảo dữ liệu nhất quán.
+
 ## Hướng dẫn sử dụng
 
 1. Cài đặt các thư viện cần thiết:
@@ -46,6 +50,11 @@ vector/
 2. Chạy script để tạo FAISS index:
    ```
    python vector/src/data/build_vector_store.py
+   ```
+
+3. Kiểm tra số lượng vector và metadata:
+   ```
+   python vector/src/data/check_vector_entry.py
    ```
 
 Sau khi chạy xong, bạn sẽ có các file `faiss.index` và `metadata.json` sẵn sàng cho việc truy vấn ngữ nghĩa trong chatbot.
