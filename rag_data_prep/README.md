@@ -5,25 +5,31 @@ This project implements a chatbot using Retrieval-Augmented Generation (RAG) tec
 ## Project Structure
 
 ```
-chatbot-rag-web-programming
-├── src
-│   ├── main.py                # Entry point of the chatbot application
-│   ├── rag
-│   │   ├── retriever.py       # Class for loading and retrieving information from PDFs
-│   │   ├── generator.py       # Class for generating responses based on retrieved information
-│   │   └── utils.py           # Utility functions for text processing and formatting
-│   ├── data
-│   │   └── process_pdf.py     # Functions to process PDF files and extract text
-│   └── config
-│       └── settings.py        # Configuration settings for the application
+ThucTap365_DuAnChatBot
+├── rag_data_prep
+│   ├── src
+│   │   ├── main.py                # Entry point of the chatbot application
+│   │   ├── rag
+│   │   │   ├── retriever.py       # Class for loading and retrieving information from PDFs
+│   │   │   ├── generator.py       # Class for generating responses based on retrieved information
+│   │   │   └── utils.py           # Utility functions for text processing and formatting
+│   │   ├── data
+│   │   │   ├── process_pdf.py     # Functions to process PDF files and extract text
+│   │   │   └── label_data.py      # Functions to label and clean extracted data
+│   │   └── config
+│   │       └── settings.py        # Configuration settings for the application
+│   ├── README.md                  # Documentation for the project
 ├── pdfs
-│   ├── web_programming_1.pdf  # PDF containing web programming content
-│   ├── web_programming_2.pdf  # PDF containing web programming content
-│   ├── web_programming_3.pdf  # PDF containing web programming content
-│   ├── web_programming_4.pdf  # PDF containing web programming content
-│   └── web_programming_5.pdf  # PDF containing web programming content
-├── requirements.txt           # List of dependencies required for the project
-└── README.md                  # Documentation for the project
+│   ├── web_programming_1.pdf      # PDF containing web programming content
+│   ├── web_programming_2.pdf      # PDF containing web programming content
+│   ├── web_programming_3.pdf      # PDF containing web programming content
+│   ├── web_programming_4.pdf      # PDF containing web programming content
+│   └── web_programming_5.pdf      # PDF containing web programming content
+├── processed
+│   ├── data_combined.json         # Extracted text data from PDFs
+│   └── data_labeled.json          # Labeled and cleaned data for chatbot
+├── requirements.txt               # List of dependencies required for the project
+└── README.md                      # Documentation for the project
 ```
 
 ## Setup Instructions
@@ -31,7 +37,7 @@ chatbot-rag-web-programming
 1. Clone the repository:
    ```
    git clone <repository-url>
-   cd chatbot-rag-web-programming
+   cd ThucTap365_DuAnChatBot
    ```
 
 2. Install the required dependencies:
@@ -45,7 +51,7 @@ chatbot-rag-web-programming
 
 To run the chatbot, execute the following command:
 ```
-python src/main.py
+python rag_data_prep/src/main.py
 ```
 
 The chatbot will initialize and prompt you for input. You can ask questions related to web programming, and the chatbot will provide responses based on the information extracted from the PDF documents.
@@ -56,5 +62,6 @@ The chatbot will initialize and prompt you for input. You can ask questions rela
 - **Generator**: Generates coherent responses using the retrieved information.
 - **Utilities**: Provides helper functions for text processing and formatting.
 - **PDF Processing**: Extracts text from PDF files to prepare data for the retriever.
+- **Labeling & Cleaning**: Labels topics and cleans extracted data for better chatbot performance.
 
 This project aims to enhance the learning experience for users interested in web programming by providing an interactive and informative chatbot.
