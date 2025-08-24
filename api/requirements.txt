@@ -1,0 +1,12 @@
+transformers
+torch
+sentence-transformers
+langchain
+faiss-cpu
+chromadb
+pandas
+numpy
+tqdm
+python-dotenv
+fastapi
+uvicorn
