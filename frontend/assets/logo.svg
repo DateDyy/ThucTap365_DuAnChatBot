@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; }
+    .primary { fill: #4285F4; }
+    .secondary { fill: #34A853; }
+    .accent { fill: #EA4335; }
+    .light { fill: #FBBC05; }
+  </style>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="white" stroke="#4285F4" stroke-width="4"/>
+  
+  <!-- Chat Bubble -->
+  <path class="primary" d="M70 80 C 60 80, 50 90, 50 100 C 50 120, 70 130, 90 130 L 95 145 L 100 130 C 130 130, 150 115, 150 100 C 150 85, 130 70, 100 70 C 90 70, 80 75, 70 80 Z"/>
+  
+  <!-- Text -->
+  <text x="100" y="105" text-anchor="middle" class="logo-text" fill="white" font-size="16">ThucTap365</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="70" cy="100" r="5" class="light"/>
+  <circle cx="100" cy="100" r="5" class="secondary"/>
+  <circle cx="130" cy="100" r="5" class="accent"/>
+</svg>
