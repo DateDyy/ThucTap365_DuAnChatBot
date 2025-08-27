@@ -1,6 +1,6 @@
 # api/app/routes/chat.py
 from fastapi import APIRouter
-from app.services.llm_service import chat_llm
+from api.app.services.llm_service import chat_llm
 
 router = APIRouter()
 

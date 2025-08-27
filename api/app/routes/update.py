@@ -1,7 +1,7 @@
 # api/app/routes/update.py
 from fastapi import APIRouter
 from pydantic import BaseModel
-from app.services.vector_service import add_document
+from api.app.services.llm_service import chat_llm
 
 router = APIRouter()
 
