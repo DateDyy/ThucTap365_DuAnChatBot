@@ -1,8 +1,8 @@
 import os
 from dotenv import load_dotenv
-from app.services.vector_service import db
-from app.prompts.rag_prompt import rag_prompt, chat_prompt
-from langchain_community.llms import HuggingFaceHub  
+from api.app.services.vector_service import db
+from api.app.prompts.rag_prompt import rag_prompt, chat_prompt
+from langchain_huggingface import HuggingFaceEndpoint  # <-- đổi sang package mới
 
 # ====== Load token từ .env ======
 load_dotenv()  
@@ -11,14 +11,12 @@ hf_token = os.getenv("HF_TOKEN")
 if not hf_token:
     raise ValueError("HF_TOKEN chưa được cấu hình trong file .env")
 
-# ====== Cấu hình Hugging Face Hub ======
-llm = HuggingFaceHub(
-    repo_id="HuggingFaceH4/zephyr-7b-beta",   # model miễn phí
-    huggingfacehub_api_token=hf_token,        # truyền token từ .env
-    model_kwargs={
-        "temperature": 0.7,
-        "max_new_tokens": 512
-    }
+# ====== Cấu hình Hugging Face Endpoint ======
+llm = HuggingFaceEndpoint(
+    repo_id="HuggingFaceH4/zephyr-7b-beta",
+    model_kwargs={"token": hf_token},
+    temperature=0.7,
+    max_new_tokens=512
 )
 
 # ====== Query RAG ======

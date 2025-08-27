@@ -13,3 +13,15 @@ rag_prompt = PromptTemplate(
     input_variables=["context", "question"],
     template=RAG_TEMPLATE
 )
+
+CHAT_TEMPLATE = """Bạn là chatbot AI hỗ trợ sinh viên trong việc học lập trình web.
+Người dùng vừa hỏi:
+{question}
+
+Hãy trả lời một cách tự nhiên, ngắn gọn và dễ hiểu, không cần trích dẫn.
+"""
+
+chat_prompt = PromptTemplate(
+    input_variables=["question"],
+    template=CHAT_TEMPLATE
+)

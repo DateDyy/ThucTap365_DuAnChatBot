@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import query, chat, update
+from api.app.routes import query, chat, update
 
 app = FastAPI()
 
