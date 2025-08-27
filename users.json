@@ -1,0 +1,15 @@
+{
+  "admin@example.com": {
+    "name": "Admin User",
+    "password": "admin123",
+    "avatar": "👤",
+    "created_at": "2025-08-27T13:20:44.476455"
+  },
+  "NVA@gmail.com": {
+    "name": "Nguyen Van A",
+    "password": "$2b$12$aHwNlSebLkdkB2Rf8jOuIuCZ7RRdvabrqWp0FQ0Blq8/AU3zURqEi",
+    "avatar": "🎭",
+    "created_at": "2025-08-27T13:22:24.965334",
+    "last_login": "2025-08-27T13:22:45.410903"
+  }
+}
