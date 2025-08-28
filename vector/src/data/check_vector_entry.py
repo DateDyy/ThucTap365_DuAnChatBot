@@ -1,22 +1,23 @@
 import os
-import faiss
-import json
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
 
+# Xác định đường dẫn project và FAISS store
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-faiss_index_path = os.path.join(project_root, "vector", "faiss.index")
-metadata_path = os.path.join(project_root, "vector", "metadata.json")
+faiss_store_path = os.path.join(project_root, "vector", "faiss_store")
 
-# Đọc FAISS index
-index = faiss.read_index(faiss_index_path)
-num_vectors = index.ntotal
+# Load embedding model (phải trùng với lúc build)
+embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-# Đọc metadata
-with open(metadata_path, "r", encoding="utf-8") as f:
-    metadata = json.load(f)
-num_metadata = len(metadata)
+# Load FAISS store
+db = FAISS.load_local(faiss_store_path, embedding_model, allow_dangerous_deserialization=True)
 
-print(f"Số vector trong faiss.index: {num_vectors}")
-print(f"Số entry trong metadata.json: {num_metadata}")
+# Đếm số lượng vector
+num_vectors = db.index.ntotal
+num_metadata = len(db.docstore._dict)  # LangChain lưu metadata trong docstore
+
+print(f"Số vector trong FAISS store: {num_vectors}")
+print(f"Số metadata trong docstore: {num_metadata}")
 
 if num_vectors == num_metadata:
     print("✅ Số lượng vector và metadata trùng khớp.")
