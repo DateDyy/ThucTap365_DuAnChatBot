@@ -1,24 +1,24 @@
-# Chatbot RAG for Web Programming
+# Chatbot RAG Cho lập trình Web
 
-This project implements a chatbot using Retrieval-Augmented Generation (RAG) techniques to assist users in learning web programming. The chatbot leverages information extracted from a set of PDF documents related to web programming.
+Dự án này triển khai một chatbot sử dụng kỹ thuật RAG (Retrieval-Augmented Generation) nhằm hỗ trợ người dùng học lập trình web. Chatbot tận dụng thông tin được trích xuất từ tập hợp các tài liệu PDF liên quan đến lập trình web.
 
-## Project Structure
+## Cấu trúc dự án
 
 ```
 ThucTap365_DuAnChatBot
 ├── rag_data_prep
 │   ├── src
-│   │   ├── main.py                # Entry point of the chatbot application
+│   │   ├── main.py                # Điểm khởi chạy chính của ứng dụng chatbot
 │   │   ├── rag
-│   │   │   ├── retriever.py       # Class for loading and retrieving information from PDFs
-│   │   │   ├── generator.py       # Class for generating responses based on retrieved information
-│   │   │   └── utils.py           # Utility functions for text processing and formatting
+│   │   │   ├── retriever.py       # Lớp chịu trách nhiệm tải và truy xuất thông tin từ các PDF
+│   │   │   ├── generator.py       # Lớp tạo phản hồi dựa trên thông tin đã truy xuất
+│   │   │   └── utils.py           # Các hàm tiện ích xử lý và định dạng văn bản
 │   │   ├── data
-│   │   │   ├── process_pdf.py     # Functions to process PDF files and extract text
-│   │   │   └── label_data.py      # Functions to label and clean extracted data
+│   │   │   ├── process_pdf.py     # Các hàm xử lý file PDF và trích xuất văn bản
+│   │   │   └── label_data.py      # Các hàm gán nhãn và làm sạch dữ liệu đã trích xuất
 │   │   └── config
-│   │       └── settings.py        # Configuration settings for the application
-│   ├── README.md                  # Documentation for the project
+│   │       └── settings.py        # # Cấu hình cho ứng dụng
+│   ├── README.md                  # Tài liệu mô tả dự án
 ├── pdfs
 │   ├── web_programming_1.pdf      # PDF containing web programming content
 │   ├── web_programming_2.pdf      # PDF containing web programming content
@@ -26,42 +26,42 @@ ThucTap365_DuAnChatBot
 │   ├── web_programming_4.pdf      # PDF containing web programming content
 │   └── web_programming_5.pdf      # PDF containing web programming content
 ├── processed
-│   ├── data_combined.json         # Extracted text data from PDFs
-│   └── data_labeled.json          # Labeled and cleaned data for chatbot
-├── requirements.txt               # List of dependencies required for the project
+│   ├── data_combined.json         # Dữ liệu văn bản đã trích xuất từ các PDF
+│   └── data_labeled.json          # Dữ liệu đã được gán nhãn và làm sạch để huấn luyện chatbot
+├── requirements.txt               # Danh sách các thư viện cần thiết cho dự án
 └── README.md                      # Documentation for the project
 ```
 
-## Setup Instructions
+## Hướng Dẫn Cài Đặt
 
-1. Clone the repository:
+1. Clone kho lưu trữ::
    ```
    git clone <repository-url>
    cd ThucTap365_DuAnChatBot
    ```
 
-2. Install the required dependencies:
+2. Cài đặt các thư viện cần thiết:
    ```
    pip install -r requirements.txt
    ```
 
-3. Ensure that the PDF files are located in the `pdfs` directory.
+3. Đảm bảo rằng các file PDF nằm trong thư mục pdfs.
 
-## Usage Guidelines
+## Hướng Dẫn Sử Dụng
 
-To run the chatbot, execute the following command:
+Để chạy chatbot, thực thi lệnh sau:
 ```
 python rag_data_prep/src/main.py
 ```
 
-The chatbot will initialize and prompt you for input. You can ask questions related to web programming, and the chatbot will provide responses based on the information extracted from the PDF documents.
+Chatbot sẽ khởi tạo và yêu cầu bạn nhập câu hỏi. Bạn có thể đặt các câu hỏi liên quan đến lập trình web, và chatbot sẽ phản hồi dựa trên thông tin đã được trích xuất từ các tài liệu PDF.
 
-## Overview of Functionality
+## Tổng quan chức năng
 
-- **Retriever**: Loads the PDF files and retrieves relevant information based on user queries.
-- **Generator**: Generates coherent responses using the retrieved information.
-- **Utilities**: Provides helper functions for text processing and formatting.
-- **PDF Processing**: Extracts text from PDF files to prepare data for the retriever.
-- **Labeling & Cleaning**: Labels topics and cleans extracted data for better chatbot performance.
+- **Retriever**: Tải các file PDF và tìm kiếm thông tin liên quan dựa trên truy vấn của người dùng.
+- **Generator**: Sinh câu trả lời mạch lạc dựa trên thông tin đã truy xuất.
+- **Utilities**: Cung cấp các hàm hỗ trợ xử lý và định dạng văn bản.
+- **PDF Processing**: Trích xuất văn bản từ các file PDF để chuẩn bị dữ liệu cho retriever.
+- **Labeling & Cleaning**: Gán nhãn chủ đề và làm sạch dữ liệu để nâng cao hiệu quả của chatbot.
 
-This project aims to enhance the learning experience for users interested in web programming by providing an interactive and informative chatbot.
+Dự án này nhằm mục tiêu nâng cao trải nghiệm học tập cho người dùng quan tâm đến lập trình web bằng cách cung cấp một chatbot tương tác và giàu thông tin.

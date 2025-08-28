@@ -1,24 +1,35 @@
-from PyPDF2 import PdfReader #Khã Hân
+import fitz  # PyMuPDF
 import json
 import os
 
 def extract_text_from_pdf(pdf_path):
+    """
+    Trích xuất văn bản từ mỗi trang của PDF bằng PyMuPDF (fitz).
+    Trả về danh sách {page, text}.
+    """
     text_per_page = []
-    with open(pdf_path, "rb") as file:
-        reader = PdfReader(file)
-        for page_num, page in enumerate(reader.pages, start=1):
+    with fitz.open(pdf_path) as pdf:
+        for page_num, page in enumerate(pdf, start=1):
+            text = page.get_text("text") or ""  # Trích xuất text
             text_per_page.append({
                 "page": page_num,
-                "text": page.extract_text() or ""
+                "text": text
             })
     return text_per_page
 
-def process_all_pdfs(pdf_directory, output_json = os.path.join("processed", "data_combined.json") ,output_txt = os.path.join("processed", "data_combined.txt")):
+def process_all_pdfs(pdf_directory,
+                     output_json=os.path.join("processed", "data_combined.json"),
+                     output_txt=os.path.join("processed", "data_combined.txt")):
+    """
+    Xử lý toàn bộ PDF trong thư mục, trích xuất text và lưu ra JSON + TXT.
+    """
     all_data = []
+
     # Tạo thư mục processed nếu chưa tồn tại
     processed_dir = os.path.dirname(output_json)
     if processed_dir and not os.path.exists(processed_dir):
         os.makedirs(processed_dir)
+
     for filename in os.listdir(pdf_directory):
         if filename.endswith(".pdf"):
             pdf_path = os.path.join(pdf_directory, filename)
@@ -29,13 +40,16 @@ def process_all_pdfs(pdf_directory, output_json = os.path.join("processed", "dat
                     "page": page["page"],
                     "text": page["text"].strip()
                 })
+
     # Lưu JSON
     with open(output_json, "w", encoding="utf-8") as f:
         json.dump(all_data, f, ensure_ascii=False, indent=2)
+
     # Lưu TXT
     with open(output_txt, "w", encoding="utf-8") as f:
         for entry in all_data:
             f.write(entry["text"] + "\n\n")
+
     print(f"Trích xuất xong {len(all_data)} trang từ {pdf_directory}")
 
 if __name__ == "__main__":

@@ -1,30 +1,29 @@
 from rag.retriever import Retriever
 from rag.generator import Generator
+import glob
+import os
 
 def main():
-    # Initialize the retriever and generator
+    # Lấy đường dẫn tuyệt đối tới thư mục hiện tại
+    base_dir = os.path.dirname(os.path.dirname(__file__))  # thư mục: rag_data_prep
+    pdf_dir = os.path.join(base_dir, "pdfs")
+    pdf_files = glob.glob(os.path.join(pdf_dir, "*.pdf"))
+
     retriever = Retriever()
-    generator = Generator()
+    retriever.load_pdfs(*pdf_files)
 
-    # Load PDF files
-    retriever.load_pdfs('pdfs/web_programming_1.pdf', 'pdfs/web_programming_2.pdf', 
-                        'pdfs/web_programming_3.pdf', 'pdfs/web_programming_4.pdf', 
-                        'pdfs/web_programming_5.pdf')
-
-    print("Chatbot is ready to assist you with web programming questions!")
+    print("Chatbot sẵn sàng hỗ trợ bạn với các câu hỏi về lập trình web!")
 
     while True:
-        user_input = input("You: ")
+        user_input = input("Bạn: ")
         if user_input.lower() in ['exit', 'quit']:
-            print("Chatbot: Goodbye!")
+            print("Chatbot: Tạm biệt!")
             break
-        
-        # Retrieve relevant information based on user input
+
         relevant_info = retriever.get_relevant_info(user_input)
-        
-        # Generate a response based on the retrieved information
+        generator = Generator()
         response = generator.generate_response(relevant_info)
-        
+
         print(f"Chatbot: {response}")
 
 if __name__ == "__main__":
