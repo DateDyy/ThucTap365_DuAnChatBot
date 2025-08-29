@@ -19,12 +19,12 @@ class ChatBox:
                 margin: 8px 0;
                 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .user-message {
-                background-color: #007bff;
+           .user-message {
+                background: linear-gradient(135deg, #007bff, #00c4cc);
                 color: white;
             }
             .assistant-message {
-                background-color: #f8f9fa;
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef);
                 color: #212529;
                 border-left: 4px solid #007bff;
             }

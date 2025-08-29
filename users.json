@@ -2,14 +2,33 @@
   "admin@example.com": {
     "name": "Admin User",
     "password": "admin123",
-    "avatar": "👤",
+    "avatar": "ðŸ‘¤",
     "created_at": "2025-08-27T13:20:44.476455"
   },
   "NVA@gmail.com": {
     "name": "Nguyen Van A",
     "password": "$2b$12$aHwNlSebLkdkB2Rf8jOuIuCZ7RRdvabrqWp0FQ0Blq8/AU3zURqEi",
-    "avatar": "🎭",
+    "avatar": "ðŸŽ­",
     "created_at": "2025-08-27T13:22:24.965334",
-    "last_login": "2025-08-27T13:22:45.410903"
+    "last_login": "2025-08-29T23:32:16.797819"
+  },
+  "nguyenquocan120423vn@gmail.com": {
+    "password": "a179d64e991a8cb61c446e9248a0ab3d1371138ec53d2f77cd8a8028d22f8be2",
+    "name": "An",
+    "created_at": "2025-08-29T15:24:42.169570",
+    "last_login": "2025-08-29T21:39:18.609391"
+  },
+  "nguyenquocan1204233vn@gmail.com": {
+    "password": "a064d1b187d426d381a83b0263af689587ae6fd258d71186e1a42183747a230c",
+    "name": "nguyenquocan1204233vn@gmail.com",
+    "created_at": "2025-08-29T15:47:41.789440",
+    "last_login": "2025-08-29T15:50:06.634675"
+  },
+  "NVB@gmail.com": {
+    "name": "Nguyen Van B",
+    "password": "$2b$12$BfFI5MGlYvmIsQigQ.MuqOSgwCcRKokpAcYMulFCFvEq87WAveDjG",
+    "avatar": "🎭",
+    "created_at": "2025-08-29T23:33:24.170483",
+    "last_login": "2025-08-29T23:53:12.213108"
   }
 }
