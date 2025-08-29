@@ -114,8 +114,7 @@ def simulate_ai_response(user_message, file_info=None):
     return response
 
 def create_chat_interface(user_id, chat_color):
-    """Tạo giao diện chat chính"""
-    st.markdown("### 💬 Chat với AI Assistant")
+
     
     # Hiển thị lịch sử chat
     chat_history = get_chat_history(user_id)

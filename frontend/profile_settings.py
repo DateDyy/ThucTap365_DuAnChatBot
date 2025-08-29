@@ -39,8 +39,6 @@ def show_user_info_sidebar(user_email):
 def show_sidebar_menu(user_email):
     """Hiển thị menu chính ở sidebar"""
     menu_options = {
-        "chat": "💬 Chat",
-        "history": "📚 Lịch sử chat",
         "profile": "👤 Hồ sơ",
         "settings": "⚙️ Cài đặt"
     }

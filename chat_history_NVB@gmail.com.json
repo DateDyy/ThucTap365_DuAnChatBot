@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "message": "Lập trình web là gì?",
+    "sender": "user",
+    "timestamp": "2025-08-29T23:34:31.257903",
+    "file_info": {
+      "filename": "LapTrinhWeb_CDN.pdf",
+      "size": 5511519,
+      "type": "application/pdf"
+    }
+  },
+  {
+    "id": 2,
+    "message": "Cảm ơn bạn đã chia sẻ thông tin này với tôi.\n\nTôi đã nhận được file LapTrinhWeb_CDN.pdf của bạn và đang phân tích nội dung.",
+    "sender": "ai",
+    "timestamp": "2025-08-29T23:34:31.265870",
+    "file_info": null
+  },
+  {
+    "id": 3,
+    "message": "Xin chào",
+    "sender": "user",
+    "timestamp": "2025-08-29T23:40:57.997099",
+    "file_info": null
+  },
+  {
+    "id": 4,
+    "message": "Đây là một câu hỏi thú vị. Hãy để tôi suy nghĩ về điều này.",
+    "sender": "ai",
+    "timestamp": "2025-08-29T23:40:58.004166",
+    "file_info": null
+  }
+]

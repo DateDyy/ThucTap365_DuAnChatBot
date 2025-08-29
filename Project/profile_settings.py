@@ -158,7 +158,6 @@ def show_sidebar_menu(user_email):
     
     # Menu options (không dùng dropdown, dùng từng nút riêng)
     menu_options = [
-        ("💬 Chat", "chat"),
         ("👤 Profile", "profile"),
         ("⚙️ Settings", "settings"),
         ("📚 Lịch sử", "history"),
