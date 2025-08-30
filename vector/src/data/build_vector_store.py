@@ -29,7 +29,6 @@ for entry in data:
                 "page": entry.get("page")
             })
 
-# Build FAISS store chuẩn LangChain
 db = FAISS.from_texts(chunks, embedding_model, metadatas=metadatas)
 db.save_local(output_dir)
 

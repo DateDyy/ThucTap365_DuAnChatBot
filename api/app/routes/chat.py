@@ -1,10 +1,9 @@
-# api/app/routes/chat.py
 from fastapi import APIRouter
 from api.app.services.llm_service import chat_llm
 
 router = APIRouter()
 
-chat_history = []  # lưu tại RAM (nếu muốn lưu DB thì tách riêng)
+chat_history = []  
 
 @router.post("/chat")
 async def chat_endpoint(payload: dict):

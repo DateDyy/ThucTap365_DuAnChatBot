@@ -1,16 +1,12 @@
-import fitz  # PyMuPDF
+import fitz  
 import json
 import os
 
 def extract_text_from_pdf(pdf_path):
-    """
-    Trích xuất văn bản từ mỗi trang của PDF bằng PyMuPDF (fitz).
-    Trả về danh sách {page, text}.
-    """
     text_per_page = []
     with fitz.open(pdf_path) as pdf:
         for page_num, page in enumerate(pdf, start=1):
-            text = page.get_text("text") or ""  # Trích xuất text
+            text = page.get_text("text") or ""  
             text_per_page.append({
                 "page": page_num,
                 "text": text
@@ -20,12 +16,8 @@ def extract_text_from_pdf(pdf_path):
 def process_all_pdfs(pdf_directory,
                      output_json=os.path.join("processed", "data_combined.json"),
                      output_txt=os.path.join("processed", "data_combined.txt")):
-    """
-    Xử lý toàn bộ PDF trong thư mục, trích xuất text và lưu ra JSON + TXT.
-    """
     all_data = []
 
-    # Tạo thư mục processed nếu chưa tồn tại
     processed_dir = os.path.dirname(output_json)
     if processed_dir and not os.path.exists(processed_dir):
         os.makedirs(processed_dir)
@@ -41,11 +33,9 @@ def process_all_pdfs(pdf_directory,
                     "text": page["text"].strip()
                 })
 
-    # Lưu JSON
     with open(output_json, "w", encoding="utf-8") as f:
         json.dump(all_data, f, ensure_ascii=False, indent=2)
 
-    # Lưu TXT
     with open(output_txt, "w", encoding="utf-8") as f:
         for entry in all_data:
             f.write(entry["text"] + "\n\n")
@@ -53,7 +43,6 @@ def process_all_pdfs(pdf_directory,
     print(f"Trích xuất xong {len(all_data)} trang từ {pdf_directory}")
 
 if __name__ == "__main__":
-    # Đường dẫn mới: thư mục pdfs nằm cùng cấp với rag_data_prep và processed
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     pdf_folder = os.path.join(project_root, "pdfs")
     print("Đang lấy PDF từ:", pdf_folder)
