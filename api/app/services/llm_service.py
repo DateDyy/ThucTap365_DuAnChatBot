@@ -62,3 +62,8 @@ def chat_llm(user_message: str, history: list, k: int = 3):
         {"role": "system", "content": "Bạn là một trợ lý AI hỗ trợ hội thoại."},
         {"role": "user", "content": prompt}
     ])
+
+def add_document(text: str, metadata: dict):
+    # Logic để thêm tài liệu vào FAISS index
+    print(f"Adding document: {text} with metadata: {metadata}")
+    # Thêm logic xử lý FAISS hoặc lưu trữ tại đây
