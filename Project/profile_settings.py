@@ -158,6 +158,10 @@ def show_sidebar_menu(user_email):
     
     # Menu options (không dùng dropdown, dùng từng nút riêng)
     menu_options = [
+<<<<<<< Updated upstream
+=======
+        ("💬 Chat", "chat"),
+>>>>>>> Stashed changes
         ("👤 Profile", "profile"),
         ("⚙️ Settings", "settings"),
         ("📚 Lịch sử", "history"),

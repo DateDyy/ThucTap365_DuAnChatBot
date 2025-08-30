@@ -3,6 +3,7 @@ import streamlit as st
 class Sidebar:
     def __init__(self):
         with st.sidebar:
+<<<<<<< Updated upstream
             self.setup_styles()
             st.title("🔮 ThucTap365 AI")
             
@@ -54,3 +55,43 @@ class Sidebar:
             }
         </style>
         """, unsafe_allow_html=True)
+=======
+            st.title("ThucTap365 ChatBot")
+            
+            # Logo
+            st.image("assets/logo.svg", width=200)
+            
+            st.markdown("---")
+            
+            # Thông tin về chatbot
+            st.markdown("### Thông tin")
+            st.markdown("""
+            Chatbot này được phát triển để hỗ trợ trả lời các câu hỏi về lập trình web.
+            
+            Dữ liệu được xây dựng từ các tài liệu giáo trình và sách về lập trình web.
+            """)
+            
+            st.markdown("---")
+            
+            # Các tùy chọn
+            st.markdown("### Tùy chọn")
+            
+            # Nút xóa lịch sử chat
+            if st.button("Xóa lịch sử chat"):
+                st.session_state.messages = []
+                st.rerun()
+            
+            # Các tùy chọn khác
+            st.markdown("### Cài đặt")
+            temperature = st.slider("Độ sáng tạo", min_value=0.0, max_value=1.0, value=0.7, step=0.1)
+            
+            st.markdown("---")
+            
+            # Thông tin phiên bản
+            st.markdown("### Phiên bản")
+            st.markdown("v1.0.0")
+            
+            # Footer
+            st.markdown("---")
+            st.markdown("© 2025 ThucTap365")
+>>>>>>> Stashed changes
