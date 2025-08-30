@@ -2,13 +2,13 @@
   "admin@example.com": {
     "name": "Admin User",
     "password": "admin123",
-    "avatar": "ðŸ‘¤",
+    "avatar": "Ã°Å¸â€˜Â¤",
     "created_at": "2025-08-27T13:20:44.476455"
   },
   "NVA@gmail.com": {
     "name": "Nguyen Van A",
     "password": "$2b$12$aHwNlSebLkdkB2Rf8jOuIuCZ7RRdvabrqWp0FQ0Blq8/AU3zURqEi",
-    "avatar": "ðŸŽ­",
+    "avatar": "Ã°Å¸Å½Â­",
     "created_at": "2025-08-27T13:22:24.965334",
     "last_login": "2025-08-29T23:32:16.797819"
   },
@@ -27,8 +27,14 @@
   "NVB@gmail.com": {
     "name": "Nguyen Van B",
     "password": "$2b$12$BfFI5MGlYvmIsQigQ.MuqOSgwCcRKokpAcYMulFCFvEq87WAveDjG",
-    "avatar": "🎭",
+    "avatar": "ðŸŽ­",
     "created_at": "2025-08-29T23:33:24.170483",
-    "last_login": "2025-08-29T23:53:12.213108"
+    "last_login": "2025-08-30T13:17:49.889422"
+  },
+  "nvc@gmail.com": {
+    "password": "3c85ca67aeeeeed7b50647364f208ca3244fed4a252457988fe3f18200148e10",
+    "name": "Nguyen Van C",
+    "created_at": "2025-08-30T13:15:35.731451",
+    "last_login": "2025-08-30T13:16:06.150396"
   }
 }
