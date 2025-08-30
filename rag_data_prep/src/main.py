@@ -4,8 +4,7 @@ import glob
 import os
 
 def main():
-    # Lấy đường dẫn tuyệt đối tới thư mục hiện tại
-    base_dir = os.path.dirname(os.path.dirname(__file__))  # thư mục: rag_data_prep
+    base_dir = os.path.dirname(os.path.dirname(__file__)) 
     pdf_dir = os.path.join(base_dir, "pdfs")
     pdf_files = glob.glob(os.path.join(pdf_dir, "*.pdf"))
 

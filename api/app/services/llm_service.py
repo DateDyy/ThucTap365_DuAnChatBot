@@ -4,26 +4,22 @@ from api.app.services.vector_service import db
 from api.app.prompts.rag_prompt import rag_prompt, chat_prompt
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 
-# ====== Load token từ .env ======
 load_dotenv()
 hf_token = os.getenv("HF_TOKEN")
 
 if not hf_token:
     raise ValueError("HF_TOKEN chưa được cấu hình trong file .env")
 
-# ====== Tạo LLM gốc ======
 base_llm = HuggingFaceEndpoint(
-    repo_id="meta-llama/Meta-Llama-3-8B-Instruct",   # ✅ model có hỗ trợ chat
-    task="conversational",                           # phải là conversational
+    repo_id="meta-llama/Meta-Llama-3-8B-Instruct",   
+    task="conversational",                           
     huggingfacehub_api_token=hf_token,
     temperature=0.7,
     max_new_tokens=512
 )
 
-# ====== Bọc thành ChatModel ======
 llm = ChatHuggingFace(llm=base_llm)
 
-# ====== Hàm an toàn gọi FAISS ======
 def safe_similarity_search(query: str, k: int = 3):
     try:
         return db.similarity_search(query, k=k)
@@ -34,7 +30,6 @@ def safe_similarity_search(query: str, k: int = 3):
         print(f"⚠️ Lỗi khác khi tìm kiếm FAISS: {e}")
         return []
 
-# ====== Query RAG ======
 def query_llm(user_query: str, k: int = 3):
     docs = safe_similarity_search(user_query, k=k)
     if not docs:
@@ -48,7 +43,6 @@ def query_llm(user_query: str, k: int = 3):
         {"role": "user", "content": prompt}
     ])
 
-# ====== Chat có lịch sử ======
 def chat_llm(user_message: str, history: list, k: int = 3):
     docs = safe_similarity_search(user_message, k=k)
     if not docs:
@@ -64,6 +58,4 @@ def chat_llm(user_message: str, history: list, k: int = 3):
     ])
 
 def add_document(text: str, metadata: dict):
-    # Logic để thêm tài liệu vào FAISS index
     print(f"Adding document: {text} with metadata: {metadata}")
-    # Thêm logic xử lý FAISS hoặc lưu trữ tại đây
