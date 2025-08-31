@@ -1,9 +1,0 @@
-{
-  "chat_color": "Red",
-  "theme": "light",
-  "font_size": "medium",
-  "auto_scroll": true,
-  "show_timestamp": true,
-  "sound_notification": true,
-  "session_timeout": "30 phút"
-}
