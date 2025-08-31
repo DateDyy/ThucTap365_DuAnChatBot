@@ -54,6 +54,15 @@ Dự án này nhằm nâng cao trải nghiệm học tập cho người dùng qu
   streamlit run frontend/streamlit_app.py
   ```
 
+### Nếu phần API bị lỗi
+
+1. Kiểm tra trong thư mục THUCTAP365_DUANCHATBOT có tồn tại file ".env".
+2. Nếu không hãy tạo file .env ở thư mục chính với nội dung
+  ```bash
+  HF_TOKEN=<mã của bạn>
+  ```
+
+
 #### Hướng Dẫn Cho Người Dùng
 
 1. Đăng nhập bằng tài khoản đã đăng ký.
