@@ -1,7 +1,3 @@
-# Chatbot RAG Cho lập trình Web
-
-Dự án này nhằm mục tiêu nâng cao trải nghiệm học tập cho người dùng quan tâm đến lập trình web bằng cách cung cấp một chatbot tương tác và giàu thông tin.
-
 # Thư mục `rag_data_prep` - Xử lý dữ liệu cho Chatbot RAG
 
 Thư mục `rag_data_prep` chứa mã nguồn và tài liệu liên quan đến việc xử lý dữ liệu, chuẩn bị dữ liệu để sử dụng trong hệ thống Chatbot RAG hỗ trợ sinh viên học lập trình web.
