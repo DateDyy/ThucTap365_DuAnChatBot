@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 import time
 import random
+import requests
 
 # File lưu trữ lịch sử chat
 CHAT_HISTORY_DIR = "chat_history"
@@ -298,14 +299,35 @@ def create_chat_interface(user_email, chat_color_name):
                 )
             
             with st.spinner("AI đang xử lý..."):
-                time.sleep(random.uniform(0.5, 1.5))
-                ai_response = "Đây là phản hồi mẫu từ AI. Trong ứng dụng thực tế, phản hồi này sẽ được lấy từ API."
+                try:
+                    # Lấy toàn bộ lịch sử chat để gửi kèm cho API
+                    history = [
+                        {"role": msg["role"], "content": msg["content"]}
+                        for msg in get_chat_history(user_email)
+                    ]
+
+                    response = requests.post(
+                        "http://127.0.0.1:8000/api/chat",
+                        json={"message": message_content}
+                    )
+
+                    if response.status_code == 200:
+                        data = response.json()
+                        ai_response = data.get("response", "⚠️ Không có phản hồi từ API.")
+                    else:
+                        ai_response = f"⚠️ Lỗi server: {response.status_code}"
+
+                except Exception as e:
+                    ai_response = f"⚠️ Lỗi kết nối API: {str(e)}"
+
+                # Lưu & hiển thị tin nhắn AI
                 add_message(user_email, "assistant", ai_response)
                 with message_container:
                     display_chat_message(
-                        {"role": "assistant", "content": ai_response, "timestamp": datetime.now().isoformat()}, 
+                        {"role": "assistant", "content": ai_response, "timestamp": datetime.now().isoformat()},
                         chat_color
                     )
+
             
             # Reset file uploader sau khi gửi
             st.session_state.uploaded_file = None
