@@ -90,6 +90,156 @@ def load_css():
         background-color: #218838;
     }
     </style>
+    
+    <!-- Persistent Login JavaScript -->
+    <script>
+    // Persistent Login JavaScript
+    // Hỗ trợ lưu trữ token đăng nhập vào localStorage
+    
+    (function() {
+        'use strict';
+        
+        // Kiểm tra xem có localStorage không
+        function isLocalStorageAvailable() {
+            try {
+                const test = '__localStorage_test__';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        
+        // Lưu token vào localStorage
+        function saveTokenToLocalStorage(token) {
+            if (isLocalStorageAvailable() && token) {
+                try {
+                    localStorage.setItem('chatbot_login_token', token);
+                    localStorage.setItem('chatbot_login_time', Date.now().toString());
+                    return true;
+                } catch (e) {
+                    console.error('Không thể lưu token vào localStorage:', e);
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+        // Đọc token từ localStorage
+        function getTokenFromLocalStorage() {
+            if (isLocalStorageAvailable()) {
+                try {
+                    const token = localStorage.getItem('chatbot_login_token');
+                    const loginTime = localStorage.getItem('chatbot_login_time');
+                    
+                    if (token && loginTime) {
+                        // Kiểm tra token có quá cũ không (30 ngày)
+                        const now = Date.now();
+                        const loginTimestamp = parseInt(loginTime);
+                        const thirtyDays = 30 * 24 * 60 * 60 * 1000; // 30 ngày tính bằng milliseconds
+                        
+                        if (now - loginTimestamp < thirtyDays) {
+                            return token;
+                        } else {
+                            // Token quá cũ, xóa đi
+                            localStorage.removeItem('chatbot_login_token');
+                            localStorage.removeItem('chatbot_login_time');
+                        }
+                    }
+                } catch (e) {
+                    console.error('Không thể đọc token từ localStorage:', e);
+                }
+            }
+            return null;
+        }
+        
+        // Xóa token khỏi localStorage
+        function removeTokenFromLocalStorage() {
+            if (isLocalStorageAvailable()) {
+                try {
+                    localStorage.removeItem('chatbot_login_token');
+                    localStorage.removeItem('chatbot_login_time');
+                    return true;
+                } catch (e) {
+                    console.error('Không thể xóa token khỏi localStorage:', e);
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+        // Kiểm tra token trong URL và lưu vào localStorage
+        function checkAndSaveTokenFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            
+            if (token) {
+                saveTokenToLocalStorage(token);
+                // Xóa token khỏi URL để bảo mật
+                urlParams.delete('token');
+                const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        }
+        
+        // Thêm token vào URL nếu cần
+        function addTokenToURL() {
+            const token = getTokenFromLocalStorage();
+            if (token) {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (!urlParams.has('token')) {
+                    urlParams.set('token', token);
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    window.history.replaceState({}, document.title, newUrl);
+                }
+            }
+        }
+        
+        // Khởi tạo khi trang load
+        function init() {
+            // Kiểm tra và lưu token từ URL
+            checkAndSaveTokenFromURL();
+            
+            // Thêm token vào URL nếu có trong localStorage
+            addTokenToURL();
+            
+            // Lắng nghe sự kiện storage để đồng bộ giữa các tab
+            if (isLocalStorageAvailable()) {
+                window.addEventListener('storage', function(e) {
+                    if (e.key === 'chatbot_login_token') {
+                        if (e.newValue) {
+                            // Token mới được lưu
+                            addTokenToURL();
+                        } else {
+                            // Token bị xóa
+                            const urlParams = new URLSearchParams(window.location.search);
+                            urlParams.delete('token');
+                            const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+                            window.history.replaceState({}, document.title, newUrl);
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Export functions để sử dụng từ Python
+        window.PersistentLogin = {
+            saveToken: saveTokenToLocalStorage,
+            getToken: getTokenFromLocalStorage,
+            removeToken: removeTokenFromLocalStorage,
+            init: init
+        };
+        
+        // Khởi tạo khi DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+    })();
+    </script>
     """, unsafe_allow_html=True)
 
 # Cấu hình màu sắc cho chat
