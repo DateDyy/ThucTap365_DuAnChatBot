@@ -71,6 +71,28 @@ Khi load trang, hệ thống sẽ kiểm tra theo thứ tự:
 
 ## Cách sử dụng
 
+### **. Cài đặt các thư viện cần thiết**
+- Tạo môi trường ảo:
+  ```bash
+  python -m venv venv
+  ```
+- Kích hoạt môi trường ảo:
+  - **Windows**:
+    ```bash
+    venv\Scripts\activate
+    ```
+  - **Linux/macOS**:
+    ```bash
+    source venv/bin/activate
+    ```
+- Cài đặt các thư viện:
+  ```bash
+  pip install streamlit
+  ```
+- Chạy lệnh sau để khởi động Giao diện:
+  ```bash
+  streamlit run frontend/streamlit_app.py
+  ```
 ### Cho người dùng:
 1. Đăng nhập bình thường
 2. Chọn "Ghi nhớ đăng nhập" nếu muốn duy trì đăng nhập lâu dài
