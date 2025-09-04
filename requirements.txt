@@ -5,5 +5,5 @@ python-dotenv
 langchain-huggingface
 langchain-community
 sentence-transformers
-torch==2.3.0+cpu
+torch==2.8.0+cpu
 --extra-index-url https://download.pytorch.org/whl/cpu
