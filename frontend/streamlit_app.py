@@ -13,6 +13,8 @@ from profile_settings import (
 )
 from auth import validate_login_token, cleanup_expired_tokens
 
+API_URL = "https://thuctap365-duanchatbot.onrender.com/api"
+
 def get_query_params():
     try:
         return st.query_params if hasattr(st, "query_params") else st.experimental_get_query_params()

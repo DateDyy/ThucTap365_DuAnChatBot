@@ -306,8 +306,9 @@ def create_chat_interface(user_email, chat_color_name):
                         for msg in get_chat_history(user_email)
                     ]
 
+                    # Đoạn mã gọi API
                     response = requests.post(
-                        "http://127.0.0.1:8000/api/chat",
+                        f"{API_URL}/chat",
                         json={"message": message_content}
                     )
 
@@ -457,6 +458,9 @@ def display_chat_history_sidebar(user_email, chat_color_name):
         st.session_state.page = "chat"
         st.rerun()
 
+
+# Thêm biến toàn cục cho URL API
+API_URL = "https://thuctap365-duanchatbot.onrender.com/api"
 
 # Main app
 def main():
