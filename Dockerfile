@@ -1,20 +1,18 @@
-# Chọn Python image
+# ---- Base image ----
 FROM python:3.10-slim
 
-# Đặt thư mục làm việc
+# ---- Set working directory ----
 WORKDIR /app
 
-# Copy file requirements
+# ---- Install dependencies ----
 COPY requirements.txt .
-
-# Cài đặt dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy toàn bộ project
+# ---- Copy source code ----
 COPY . .
 
-# Expose cổng (Railway tự dùng $PORT)
+# ---- Expose port ----
 EXPOSE 8000
 
-# Lệnh chạy (chạy FastAPI qua Uvicorn)
-CMD ["sh", "-c", "uvicorn api.app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# ---- Run FastAPI ----
+CMD ["uvicorn", "api.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
