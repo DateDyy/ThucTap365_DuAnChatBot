@@ -4,3 +4,4 @@ pydantic
 python-dotenv
 langchain-huggingface
 langchain-community
+sentence-transformers
