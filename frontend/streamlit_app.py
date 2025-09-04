@@ -1,4 +1,39 @@
+import subprocess
+import threading
+import time
+import requests
 import streamlit as st
+
+def is_fastapi_running():
+    """Kiểm tra xem FastAPI server đã chạy hay chưa."""
+    try:
+        response = requests.get("http://127.0.0.1:8000")
+        if response.status_code == 200:
+            return True
+    except requests.ConnectionError:
+        return False
+    return False
+
+def run_fastapi():
+    """Khởi động FastAPI server."""
+    subprocess.run(["uvicorn", "api.app.main:app", "--host", "0.0.0.0", "--port", "8000"])
+
+# Kiểm tra và chỉ khởi động FastAPI nếu chưa chạy
+if "fastapi_started" not in st.session_state:
+    if not is_fastapi_running():
+        thread = threading.Thread(target=run_fastapi, daemon=True)
+        thread.start()
+        # Đợi một chút để FastAPI server khởi động
+        time.sleep(3)
+    st.session_state.fastapi_started = True
+
+# Phần còn lại của ứng dụng Streamlit
+st.title("Chatbot RAG")
+
+# Đợi một chút để đảm bảo FastAPI đã sẵn sàng
+time.sleep(1)
+
+# Phần còn lại của mã nguồn ứng dụng Streamlit
 from datetime import datetime
 from config import load_css, load_config, CHAT_COLORS
 from login_form import show_login_form
