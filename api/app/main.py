@@ -1,7 +1,18 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from api.app.routes import query, chat, update
 
 app = FastAPI()
+
+# Thêm route cho đường dẫn gốc "/"
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to ThucTap365 Chatbot API!"}
+
+# Route cho favicon
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return FileResponse("path/to/favicon.ico")  # Thay "path/to/favicon.ico" bằng đường dẫn thực tế
 
 app.include_router(query.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")
