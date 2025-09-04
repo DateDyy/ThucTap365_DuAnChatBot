@@ -1,12 +1,4 @@
-transformers
-torch
-sentence-transformers
-langchain==0.3.27
-faiss-cpu
-chromadb
-pandas
-numpy
-tqdm
-python-dotenv==1.0.0
+langchain
+python-dotenv
 fastapi
 uvicorn
