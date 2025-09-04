@@ -1,8 +1,4 @@
-langchain
-langchain-huggingface
-faiss-cpu
-python-dotenv
 fastapi
 uvicorn
-langchain-community
-sentence-transformers
+pydantic
+python-dotenv
